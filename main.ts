@@ -55,6 +55,14 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         updateChoices()
     }
 })
+function nomonryforyou () {
+    nomoneyforyou1 = createScript("Mr. Kao", "I am tired go away ", 2)
+    NoMoneyForYou2 = createScript("Pineapple", "I am tired go away ", 3)
+    NoMoneyForYou3 = createScript("Pineapple", "I am tired go away ", 0)
+    blockObject.setAnyProperty(nomoneyforyou1, AnyProp.NextPage, NoMoneyForYou2)
+    blockObject.setAnyProperty(NoMoneyForYou2, AnyProp.NextPage, NoMoneyForYou3)
+    return nomoneyforyou1
+}
 function createConversation () {
     startScript = createScript("Mr. Kao", "IT'S SO HOT! I NEED SOME WATER!", 1)
     nextPage = createScript("Pineapple", "You didn't pay your water bill! Now feel the thunder!", 1)
@@ -144,7 +152,11 @@ function imAnOldMan () {
     blockObject.setAnyProperty(oldman1, AnyProp.NextPage, oldman2)
     blockObject.setStringArrayProperty(oldman2, StrArrayProp.Choices, ["OK here's $2!", "NO MONEY FOR YOU!!"])
     blockObject.setAnyProperty(oldman2, AnyProp.Choice1, happyEnding())
+    blockObject.setAnyProperty(oldman2, AnyProp.Choice2, nomonryforyou())
     return oldman1
+}
+function nomoneyforyou () {
+	
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (choiceIndex == 0) {
@@ -169,6 +181,9 @@ let makingChoice = false
 let currentScript: blockObject.BlockObject = null
 let nextPage: blockObject.BlockObject = null
 let startScript: blockObject.BlockObject = null
+let NoMoneyForYou3: blockObject.BlockObject = null
+let NoMoneyForYou2: blockObject.BlockObject = null
+let nomoneyforyou1: blockObject.BlockObject = null
 let choiceIndex = 0
 let happy4: blockObject.BlockObject = null
 let happy3: blockObject.BlockObject = null
