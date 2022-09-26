@@ -44,7 +44,12 @@ function happyEnding () {
     return happy1
 }
 function imSorry () {
-	
+    Imsorry1 = createScript("Pineapple", "Its okey you can pay later ", 4)
+    ImSorry2 = createScript("Mr. Kao", "thsnk you very much ", 3)
+    ImSorry3 = createScript("Pineapple", "No problem ", 4)
+    blockObject.setAnyProperty(Imsorry1, AnyProp.NextPage, ImSorry2)
+    blockObject.setAnyProperty(ImSorry2, AnyProp.NextPage, ImSorry3)
+    return Imsorry1
 }
 // microsoft/arcade-block-objects
 // 
@@ -69,7 +74,7 @@ function createConversation () {
     blockObject.setAnyProperty(startScript, AnyProp.NextPage, nextPage)
     blockObject.setStringArrayProperty(nextPage, StrArrayProp.Choices, ["I'm an old man!", "I'm sorry :("])
     blockObject.setAnyProperty(nextPage, AnyProp.Choice1, imAnOldMan())
-    blockObject.setAnyProperty(nextPage, AnyProp.Choice2, 0)
+    blockObject.setAnyProperty(nextPage, AnyProp.Choice2, imSorry())
     currentScript = startScript
 }
 function printScript (name: string, text: string, portrait: number) {
@@ -155,9 +160,6 @@ function imAnOldMan () {
     blockObject.setAnyProperty(oldman2, AnyProp.Choice2, nomonryforyou())
     return oldman1
 }
-function nomoneyforyou () {
-	
-}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (choiceIndex == 0) {
         choiceIndex = 1
@@ -185,6 +187,9 @@ let NoMoneyForYou3: blockObject.BlockObject = null
 let NoMoneyForYou2: blockObject.BlockObject = null
 let nomoneyforyou1: blockObject.BlockObject = null
 let choiceIndex = 0
+let ImSorry3: blockObject.BlockObject = null
+let ImSorry2: blockObject.BlockObject = null
+let Imsorry1: blockObject.BlockObject = null
 let happy4: blockObject.BlockObject = null
 let happy3: blockObject.BlockObject = null
 let happy2: blockObject.BlockObject = null
